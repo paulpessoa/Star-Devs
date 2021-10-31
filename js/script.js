@@ -27,3 +27,23 @@ function getData(param) {
             .then(res => res.json())
 }
 
+function loadPhrase() {
+    const btn = document.getElementById('btn-phrases');
+    const phrase = document.getElementById('phrase');
+
+    return fetch('http://swquotesapi.digitaljedi.dk/api/SWQuote/RandomStarWarsQuote')
+    .then(data => data.json())
+    .then(json => {
+        btn.innerHTML = 'Ver mais uma frase!';
+        phrase.innerHTML = `"${json.content}"`;
+
+          phrase.animate([
+            { transform: 'translateY(-70px)'},
+            { transform: 'translateY(0px)'}
+          ], {
+            duration: 500
+          })
+        })
+        .catch(err => console.log('Erro: ', err))
+};
+
